@@ -1,0 +1,15 @@
+NAME
+	projet - la machine à inventer des mots
+SYNOPSIS
+	projet [OPTION]... FILE
+DESCRIPTION
+Génère des mots ou des phrases à partir du dictionnaire FILE
+	-a utilise la méthode aléatoire pour générer les mots
+	-d utilise la méthode des digrammes pour générer les mots
+	-t utilise la méthode des trigrammes pour générer les mots
+	-p génère une phrase (en utilisant la méthode des ,→ trigrammes)
+	-n NB génère NB mots (par défaut génère 100 mots)
+	-s NB affiche uniquement des mots de NB caractères
+	-h affiche cette aide et quitte
+AUTHORS
+	Écrit par P. Equinet, G. Sordel.
