@@ -15,6 +15,10 @@ PROGRAM Main;
 (* Déclaration des librairies utilisées *)
 USES cwstring, fct;
 (*Début du programme principal*)
+CONST
+(* Déclaration des constantes utilisées *)
+alphabet: WideString =  'abcdefghijklmnopqrstuvwxyzàâéèêëîïôùûüÿæœç-';
+
 VAR
 (*Déclaration variables utilises dans le programme principal*)
 
