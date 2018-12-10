@@ -20,12 +20,9 @@ USES cwstring, fct;
 
 (* Déclaration des constantes utilisées *)
 CONST
-alphabet: WideString =  'abcdefghijklmnopqrstuvwxyzàâéèêëîïôùûüÿæœç-';
+   alphabet: WideString =  'abcdefghijklmnopqrstuvwxyzàâéèêëîïôùûüÿæœç-';
 
 (*Début du programme principal*)
-VAR
-(*Déclaration variables utilises dans le programme principal*)
-
 BEGIN
 
 END.
