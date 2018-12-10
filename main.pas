@@ -14,11 +14,15 @@
 PROGRAM Main;
 (* Déclaration des librairies utilisées *)
 USES cwstring, fct;
-(*Début du programme principal*)
-CONST
+{$mode objfpc}{$H+}
+{$codepage UTF8}
+{$I-}
+
 (* Déclaration des constantes utilisées *)
+CONST
 alphabet: WideString =  'abcdefghijklmnopqrstuvwxyzàâéèêëîïôùûüÿæœç-';
 
+(*Début du programme principal*)
 VAR
 (*Déclaration variables utilises dans le programme principal*)
 
