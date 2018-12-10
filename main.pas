@@ -12,6 +12,8 @@
  ------------------------------------------------------------------------------------
  *)
 PROGRAM Main;
+(* Déclaration des librairies utilisées *)
+USES cwstring, fct;
 (*Début du programme principal*)
 VAR
 (*Déclaration variables utilises dans le programme principal*)
