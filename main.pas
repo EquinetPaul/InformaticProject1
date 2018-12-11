@@ -13,7 +13,7 @@
  *)
 PROGRAM Main;
 (* Déclaration des librairies utilisées *)
-USES cwstring, fct;
+USES cwstring, fct, fct2;
 {$mode objfpc}{$H+}
 {$codepage UTF8}
 {$I-}
