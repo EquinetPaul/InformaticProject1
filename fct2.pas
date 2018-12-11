@@ -13,7 +13,7 @@ CONST
 (*
  ------------------------------------------------------------------------------------
  -- Fonction          : creeMotAleatoire
- -- Auteur            : 
+ -- Auteur            :
  -- Date de creation  : Mon Dec 10 11:32:45 2018
  --
  -- But               : Générer un mot aléatoire de taille donéee

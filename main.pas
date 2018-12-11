@@ -1,7 +1,7 @@
 (*
  ------------------------------------------------------------------------------------
  -- Fichier           : main.pas
- -- Auteur            : 
+ -- Auteur            : toto noName <toto.noName@eisti.eu>
  -- Date de creation  : Mon Dec 10 10:52:49 2018
  --
  -- But               : But
@@ -13,7 +13,7 @@
  *)
 PROGRAM Main;
 (* Déclaration des librairies utilisées *)
-USES cwstring, fct, fct2;
+USES cwstring, sysutils, fct, cmd;
 {$mode objfpc}{$H+}
 {$codepage UTF8}
 {$I-}

@@ -39,13 +39,13 @@ END; { afficherCommandes }
 (*
  ------------------------------------------------------------------------------------
  -- PROCEDURE         : traiterCommande()
- -- Auteur            : 
+ -- Auteur            : toto noName <toto.noName@eisti.eu>
  -- Date de creation  : Tue Dec 11 15:26:45 2018
  --
  -- But               : traiter les commandes mises en paramètres lors du lancement du programme
  -- Remarques         : Aucune
- -- Pré conditions    : un caractère (désignant la commande) et un entier (si la commande est associée à une valeur) 
- -- Post conditions   : execute la commande voulu
+ -- Pré conditions    : aucune
+ -- Post conditions   : But
  ------------------------------------------------------------------------------------*)
 PROCEDURE traiterCommande(commande : Char ; val : Integer);
 BEGIN
@@ -55,5 +55,6 @@ BEGIN
         afficherCommandes();
    END;
 END;
+
 
 END.
