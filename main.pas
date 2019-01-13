@@ -12,24 +12,24 @@
  ------------------------------------------------------------------------------------
  *)
 PROGRAM Main;
-(* Déclaration des librairies utilisées *)
-USES cwstring, sysutils, fct, cmd;
 {$mode objfpc}{$H+}
 {$codepage UTF8}
 {$I-}
+(* Déclaration des librairies utilisées *)
 
+USES cwstring, sysutils, crt, fct, cmd;
 (* Déclaration des variables utilisées dans le programme principal *)
 VAR
-   i, val : Integer; commande : Char;
-
-(*Début du programme principal*)
+   i : Integer; commande : String;
+   (*Début du programme principal*)
 BEGIN
+	commande := '';
+	Randomize;
    i := 1;
-   WHILE i <= 2 DO BEGIN
-      commande := ParamStr(1)[2];
-      val := StrToInt(ParamStr(2));
-      i := i + 1;
+   FOR i:=1 TO ParamCount DO BEGIN
+      commande := commande + ParamStr(i);
    END;
-   traiterCommande(commande, val);
+   traiterCommande(commande);
 END.
+
 (*Fin du programme principal*)
