@@ -12,18 +12,6 @@ CONST
    alphabet: WideString   = 'abcdefghijklmnopqrstuvwxyzàâéèêëîïôùûüÿæœç-';
    nombreLettreAlphabet = 43;
 
-function choisirPremiereLettre(t : tab):String;
-var 
-	indice : integer;
-	res : String;
-begin
-	repeat
-		indice := random(length(alphabet)+1);
-		res := alphabet[indice];
-	until t[indiceLettre(res)] >= 100;
-	choisirPremiereLettre := res;
-end;
-
 (*
  ------------------------------------------------------------------------------------
  -- PROCEDURE         : compterFrequenceLettre
@@ -163,7 +151,7 @@ end;
  -- Post conditions   :
  ------------------------------------------------------------------------------------*)
 
-function lireLexique(nomFichier : String; t : tbx):tbx;
+function lireLexique(nomFichier : String):tbx;
 VAR
    ligne :wideString; fic   : Text; res : tbx;
 BEGIN
@@ -188,7 +176,7 @@ var
 	somme : real;
 begin
 	somme := sommeTableau(frequencePremiereLettre);
-	for i := low(res) to high(res) do begin
+	for i := low(frequencePremiereLettre) to high(frequencePremiereLettre) do begin
 		if frequencePremiereLettre[i] > 0 then begin
 			res[i] := round(100*(frequencePremiereLettre[i] / somme));
 		end
@@ -219,18 +207,16 @@ begin
 	creerTableauFrequenceDerniereLettre := res;
 end;
 
-
 function creerDigrammeUtilisateur():tbx;
 VAR
 	tableaux, res : tbx;
 begin
-	tableaux := lireLexique('lexique2.txt', tableaux);
+	tableaux := lireLexique('dico/lexique2.txt');
 	res.frequenceLettreDebut := creerTableauFrequencePremiereLettre(tableaux.frequenceLettreDebut);
 	res.frequenceLettreFin := creerTableauFrequenceDerniereLettre(tableaux.frequenceLettreDebut);
 	res.digramme := creerDigramme(tableaux.frequenceSuccession , tableaux.frequenceLettre, tableaux.frequenceLettreFin); 
 	creerDigrammeUtilisateur := res;
 end;
-
 
 BEGIN
 END.
