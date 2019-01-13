@@ -1,13 +1,17 @@
 UNIT user;
 INTERFACE
+USES fct, fct2, Crt, cmd, digramme, phrases;
 
 (* Déclaration des fonctions utilisables par le programme principal *)
 PROCEDURE creeMotAleatoireUtilisateur(val : Integer);
+procedure repeterFonction(fct:String; nombre:Integer; taille : Integer);
 
 IMPLEMENTATION
 
 (* Déclaration des constantes utilisées *)
-USES fct2;
+
+CONST
+	nombreLettreAlphabet = 43;
 
 (*
  ------------------------------------------------------------------------------------
@@ -21,12 +25,43 @@ USES fct2;
  -- Post conditions   : But
  ------------------------------------------------------------------------------------*)
 PROCEDURE creeMotAleatoireUtilisateur(val :Integer);
-VAR
-   longueurMotUtilisateur :Integer; appelleFonction : String;
 BEGIN
-   longueurMotUtilisateur := val;
-   appelleFonction := creeMotAleatoire(longueurMotUtilisateur);
-   WRITELN(appelleFonction);
+   WRITELN(creeMotAleatoire(val));
 END;
+
+procedure creeMotDigrammeUtilisateur(val: Integer; tableauxDigramme :tbx);
+begin
+	writeln(creeMotDigramme(val,tableauxDigramme));
+end;
+
+procedure creePhraseUtilisateur;
+begin
+	writeln(genererUnePhrase());
+end;
+
+procedure repeterFonction(fct:String; nombre:Integer; taille : Integer);
+var
+	i, tailleGeneree : integer;
+	tableauxDigramme : tbx;
+begin
+	clear();
+	if fct = 'd' then begin 
+		tableauxDigramme := creerDigrammeUtilisateur();
+	end;
+	for i:= 1 to nombre do begin
+		tailleGeneree := taille;
+		if taille = 0 then begin
+			tailleGeneree := Random(6)+5; {Random(6) génère un nombre entre [1;5[, on y ajoute 5 pour avoir l'intervalle [5:10]}
+		end;
+		case fct of
+			'a' : creeMotAleatoireUtilisateur(tailleGeneree);
+			'd' : creeMotDigrammeUtilisateur(tailleGeneree, tableauxDigramme);
+			'p' : creePhraseUtilisateur();
+		ELSE
+			afficherCommandes();
+		end;
+	end;
+		
+end;	
 
 END.
