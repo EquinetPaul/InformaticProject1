@@ -211,7 +211,7 @@ function creerDigrammeUtilisateur():tbx;
 VAR
 	tableaux, res : tbx;
 begin
-	tableaux := lireLexique('dico/lexique2.txt');
+	tableaux := lireLexique('lexique2.txt');
 	res.frequenceLettreDebut := creerTableauFrequencePremiereLettre(tableaux.frequenceLettreDebut);
 	res.frequenceLettreFin := creerTableauFrequenceDerniereLettre(tableaux.frequenceLettreDebut);
 	res.digramme := creerDigramme(tableaux.frequenceSuccession , tableaux.frequenceLettre, tableaux.frequenceLettreFin); 
