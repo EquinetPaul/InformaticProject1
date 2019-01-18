@@ -12,6 +12,7 @@ CONST
 TYPE
 	tab  = ARRAY[1..nombreLettreAlphabet] OF Extended;
 	tab2 =  ARRAY[1..nombreLettreAlphabet] OF tab;
+	commandeType = ARRAY [1..6] of String;
 	tbx = record
    	frequenceLettre, frequenceLettreDebut, frequenceLettreFin : tab;
    	frequenceSuccession, digramme : tab2;
@@ -26,8 +27,41 @@ procedure aft2(a:tab2);
 function sommeAllTableau(t:tab2):real;
 function sommeTableau(t:tab):real;
 FUNCTION indiceLettre(lettre : WideString):Integer ;
+function arrayToStr(commande:commandeType):String;
+function motValide(mot:widestring):Boolean;
 
 IMPLEMENTATION
+
+function motValide(mot:widestring):Boolean;
+var
+	res : boolean;
+	i, j : integer;
+begin
+	res := True;
+	for i := 1 to length(mot) do begin
+		j := 0;
+		repeat
+			j := j + 1;
+			writeln(j);
+		until (mot[i] = alphabet[j]) OR (j>length(alphabet)) ;
+		if j>nombreLettreAlphabet then begin
+			res := false;
+		end;
+	end;
+	motValide := res;			
+end;
+
+function arrayToStr(commande:commandeType):String;
+var
+	res : string;
+	i : integer;
+begin
+	res := '';
+	for i := low(commande) to high(commande) do begin
+		res := res + commande[i];
+	end;
+	arrayToStr := res;	
+end;
 
 (*
  ------------------------------------------------------------------------------------

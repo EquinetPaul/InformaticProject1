@@ -2,12 +2,12 @@ unit cmd;
 
 interface
 {$mode objfpc}
-
-procedure traiterCommande(commande: String);
+uses sysutils, fct, user;
+procedure traiterCommande(commande: commandeType);
 procedure afficherCommandes();
 
 implementation
-uses sysutils, fct, user;
+
 
 FUNCTION countVal(chaine:String; valeur:char):Integer;
 var
@@ -36,75 +36,87 @@ BEGIN
    close(fic);
 END;
 
-procedure commandeSimple(commande:String);
+procedure commandeSimple(commande:commandeType);
 var
-	commande1 : String;
+	commande1, fileName : String;
 begin
-commande1 := copy(commande, pos('-', commande)+1, pos('-', commande)+1);
+commande1 := copy(commande[1], pos('-', commande[1])+1, 1);
+if commande[2] <> '' then begin
+	fileName := commande[2];
+end else begin
+	fileName := 'dico/lexique2.txt';
+end;
 case commande1 of
-	'a', 'd', 'p' : repeterFonction(commande1, 10, 0);
+	'a', 'd', 'p' : repeterFonction(commande1, 10, 0, fileName);
 	ELSE
 		afficherCommandes();
 	end;
 end;
 
-procedure commandeDouble(commande:String);
+procedure commandeDouble(commande:commandeType);
 var
-	commande1, commande2 : String;
+	commande1, commande2, fileName : String;
 	valeurCommande2 : Integer;
 begin
-commande1 := copy(commande, pos('-', commande)+1, pos('-', commande));
-commande2 := copy(commande, pos(commande1, commande)+2, pos('-', commande));
+commande1 := copy(commande[1], pos('-', commande[1])+1, 1);
+commande2 := copy(commande[2], pos('-', commande[2])+1, 1);
 try
-	valeurCommande2:= StrToInt(copy(commande, pos(commande2, commande)+1, length(commande)));
-except
-  on E: EConvertError do
+	valeurCommande2 := StrToInt(commande[3]);
+except on E: EConvertError do
 	valeurCommande2 := 10;
+end;
+if commande[4] <> '' then begin
+	fileName := commande[4];
+end else begin
+	fileName := 'dico/lexique2.txt';
 end;
 
 case commande2 of
-	'n' : repeterFonction(commande1, valeurCommande2, 0);
-	's' : repeterFonction(commande1, 10, valeurCommande2);
+	'n' : repeterFonction(commande1, valeurCommande2, 0, fileName);
+	's' : repeterFonction(commande1, 10, valeurCommande2, fileName);
 	ELSE
 		afficherCommandes();
 	end;
 end;
 
-procedure commandeTriple(commande:String);
+procedure commandeTriple(commande:commandeType);
 var
-	commande1, commande2, commande3, suiteCommande: String;
+	commande1, commande2, commande3, fileName: String;
 	valeurCommande2, valeurCommande3 : Integer;
 begin
-commande1 := copy(commande, pos('-', commande)+1, pos('-', commande));
-commande2 := copy(commande, pos(commande1, commande)+2, pos('-', commande));
-suiteCommande := copy(copy(commande, pos(commande2, commande), length(commande)), pos(commande2, copy(commande, pos(commande2, commande), length(commande)))+1, pos('-', copy(commande, pos(commande2, commande), length(commande)))-2 );
-
+commande1 := copy(commande[1], pos('-', commande[1])+1, 1);
+commande2 := copy(commande[2], pos('-', commande[2])+1, 1);
+commande3 := copy(commande[4], pos('-', commande[4])+1, 1);
 try
-	valeurCommande2 := StrToInt(suiteCommande);
-	commande3 := copy(copy(commande, pos(suiteCommande, commande), length(commande)), pos('-', copy(commande, pos(suiteCommande, commande), length(commande)))+1, 1);
-	valeurCommande3 := StrToInt(copy(commande, pos(commande3, commande)+1, 10));
-except
-  on E: EConvertError do
+	valeurCommande2 := StrToInt(commande[3]);
+except on E: EConvertError do
 	valeurCommande2 := 10;
-  on E: EConvertError do
-	valeurCommande3 := 10;
-
+end;
+try
+	valeurCommande3 := StrToInt(commande[5]);
+except on E: EConvertError do
+	valeurCommande3 := 5;
+end;
+if commande[6] <> '' then begin
+	fileName := commande[6];
+end else begin
+	fileName := 'dico/lexique2.txt';
 end;
 
 case commande2 of
-	'n' : repeterFonction(commande1, valeurCommande2, valeurCommande3);
-	's' : repeterFonction(commande1, valeurCommande3, valeurCommande2);
+	'n' : repeterFonction(commande1, valeurCommande2, valeurCommande3, fileName);
+	's' : repeterFonction(commande1, valeurCommande3, valeurCommande2, fileName);
 	ELSE
 		afficherCommandes();
 	end;
-		
 end;
 
-procedure traiterCommande(commande: String);
+procedure traiterCommande(commande: commandeType);
 var 
 	nombreCommande : Integer;
 begin
-nombreCommande := countVal(commande, '-');
+
+nombreCommande := countVal(arrayToStr(commande), '-');
 case nombreCommande of 
 	1 : commandeSimple(commande);
 	2 : commandeDouble(commande);

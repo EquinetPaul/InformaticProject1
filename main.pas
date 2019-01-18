@@ -20,14 +20,13 @@ PROGRAM Main;
 USES cwstring, sysutils, crt, fct, cmd;
 (* Déclaration des variables utilisées dans le programme principal *)
 VAR
-   i : Integer; commande : String;
+   i : Integer; commande : commandeType;
    (*Début du programme principal*)
 BEGIN
-	commande := '';
 	Randomize;
    i := 1;
    FOR i:=1 TO ParamCount DO BEGIN
-      commande := commande + ParamStr(i);
+      commande[i] := ParamStr(i);
    END;
    traiterCommande(commande);
 END.

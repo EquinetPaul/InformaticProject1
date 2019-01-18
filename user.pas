@@ -1,13 +1,13 @@
 UNIT user;
 INTERFACE
-USES fct, fct2, Crt, cmd, digramme, phrases;
+USES fct, fct2, Crt, digramme, phrases;
 
 (* Déclaration des fonctions utilisables par le programme principal *)
 PROCEDURE creeMotAleatoireUtilisateur(val : Integer);
-procedure repeterFonction(fct:String; nombre:Integer; taille : Integer);
+procedure repeterFonction(fct:String; nombre:Integer; taille : Integer; fileName: String);
 
 IMPLEMENTATION
-
+USES cmd;
 (* Déclaration des constantes utilisées *)
 
 CONST
@@ -39,14 +39,14 @@ begin
 	writeln(genererUnePhrase());
 end;
 
-procedure repeterFonction(fct:String; nombre:Integer; taille : Integer);
+procedure repeterFonction(fct:String; nombre:Integer; taille : Integer; fileName: String);
 var
 	i, tailleGeneree : integer;
 	tableauxDigramme : tbx;
 begin
 	clear();
 	if fct = 'd' then begin 
-		tableauxDigramme := creerDigrammeUtilisateur();
+		tableauxDigramme := creerDigrammeUtilisateur(fileName);
 	end;
 	for i:= 1 to nombre do begin
 		tailleGeneree := taille;

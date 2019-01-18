@@ -5,7 +5,7 @@ INTERFACE
 {$I-}
 USES cwstring, sysutils, fct;
 
-function creerDigrammeUtilisateur():tbx;
+function creerDigrammeUtilisateur(fileName:String):tbx;
 
 IMPLEMENTATION
 CONST
@@ -121,22 +121,6 @@ begin
 	t.frequenceSuccession := compterFrequenceSuccessionLettre(mot, t.frequenceSuccession);
 	calculsTableau := t;
 end;
-
-function motValide(mot:widestring):Boolean;
-var
-	res : boolean;
-	i, j : integer;
-begin
-	res := false;
-	for i := 1 to length(mot) do begin
-		for j := 1 to length(alphabet) do begin
-			if mot[i] = alphabet[j] then begin
-				res := true;
-			end;
-		end;
-	end;
-	motValide := res;			
-end;
 	
 
 (*
@@ -207,11 +191,11 @@ begin
 	creerTableauFrequenceDerniereLettre := res;
 end;
 
-function creerDigrammeUtilisateur():tbx;
+function creerDigrammeUtilisateur(fileName:String):tbx;
 VAR
 	tableaux, res : tbx;
 begin
-	tableaux := lireLexique('lexique2.txt');
+	tableaux := lireLexique(fileName);
 	res.frequenceLettreDebut := creerTableauFrequencePremiereLettre(tableaux.frequenceLettreDebut);
 	res.frequenceLettreFin := creerTableauFrequenceDerniereLettre(tableaux.frequenceLettreDebut);
 	res.digramme := creerDigramme(tableaux.frequenceSuccession , tableaux.frequenceLettre, tableaux.frequenceLettreFin); 
