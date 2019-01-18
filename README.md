@@ -11,7 +11,7 @@ Génère des mots ou des phrases à partir du dictionnaire FILE
 	-p génère une phrase (en utilisant la méthode des ,→ trigrammes)
 	-n génère NB mots (par défaut génère 10 mots)
 	-s affiche uniquement des mots de NB caractères (par défaut longueur 5 à 10 caratères sans appel de cette commande
-	-h affiche cette aide et quitte
+	-h affiche cette aide et quitte	
 AUTHORS
 Écrit par P. Equinet, G. Sordel.
 
